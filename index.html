@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess The Number</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+            <select name="difficulty" id="difficulty">
+                <option class="" value="0">Medium</option>
+                <option class="easy" value="1">Easy</option>
+                <option class="medium" value="2">tough</option>
+                <option class="Intermediate" value="3">Intermediate</option>
+                <option class="Hard" value="4">Hard</option>
+            </select>
+        <h1>I am thinking of a number between, <span class="ask">1-10</span> <br> Can you Guess it!</h1>
+        <input value="" class="number" type="number"> 
+        <p class="pop-up">Try another number</p>
+        <button class="btn" id="guess-btn">Guess</button>
+        <p class="win">yahh you won it! <br> the number was <span class="numberchoose">41</span> <br> you guessed it in <span class="guesses">8</span> Guesses</p>
+        <p class="feedback">your guess is too high</p>
+        <button class="btn" id="playagain-btn">Play Again</button>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
