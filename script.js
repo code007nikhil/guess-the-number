@@ -1,6 +1,7 @@
 var num = document.querySelector(".number");
 var guessbtn = document.querySelector("#guess-btn");
 var playagainbtn = document.querySelector("#playagain-btn");
+var cheatbtn = document.querySelector("#cheat-btn");
 var win = document.querySelector(".win");
 var choose = document.querySelector(".numberchoose");
 var guesses = document.querySelector(".guesses");
@@ -8,6 +9,7 @@ var popup = document.querySelector(".pop-up");
 var feedback = document.querySelector(".feedback");
 var difficulty = document.querySelector("#difficulty");
 var ask = document.querySelector(".ask");
+var changediffbtn = document.querySelector(".chngdiff");
 
 // random number generator based on difficulties
 
@@ -34,12 +36,13 @@ var randomnumber = ()=>{
     return number;
     }
 };
+
 randomvalue =  randomnumber();
 
 
 
 // update related to difficulty 
-difficulty.addEventListener("click",function(){
+changediffbtn.addEventListener("click",function(){
     if(Number(difficulty.value) == 0){
         ask.textContent = "1-10"
         randomvalue =  randomnumber();
@@ -82,6 +85,7 @@ guessbtn.addEventListener("click",function(){
        guessbtn.style.display = "none";
        playagainbtn.style.display = "block";
        popup.style.display = "none";
+       cheatbtn.style.display = "none"
        
 
        if(guesscount < 3){
@@ -116,6 +120,7 @@ guessbtn.addEventListener("click",function(){
         popup.textContent = "enter a valid number !";
         num.value = "";
         num.setAttribute("placeholder",`0`);
+
     }
     else{
         popup.style.color = randomcolor();
@@ -125,7 +130,14 @@ guessbtn.addEventListener("click",function(){
         num.setAttribute("placeholder",`0`);
     }
 })
+//cheat btn logic
 
+cheatbtn.addEventListener("mouseenter",()=>{
+    cheatbtn.textContent = randomvalue;
+})
+cheatbtn.addEventListener("mouseleave",()=>{
+    cheatbtn.textContent = "cheat";
+})
 
 // play again logic
 playagainbtn.addEventListener("click",function(){
@@ -135,11 +147,12 @@ playagainbtn.addEventListener("click",function(){
     guessbtn.style.display = "block";
     playagainbtn.style.display = "none";
     feedback.style.display = "none";
+    cheatbtn.style.display = "block"
     randomvalue = randomnumber();
     num.value = "";
     num.setAttribute("placeholder","0");
 })
-
+ 
 
 // random color generator
 var randomcolor = ()=>{
