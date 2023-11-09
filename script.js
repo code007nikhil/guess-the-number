@@ -72,6 +72,7 @@ var guesscount = 0;
 var guesscountactive = true;
 guessbtn.addEventListener("click",function(){  
     console.log(randomvalue);
+    var placeholder = num.value;
     if (randomvalue == num.value && guesscountactive == true) {
         guesscount++;
        choose.textContent = num.value; 
@@ -81,6 +82,7 @@ guessbtn.addEventListener("click",function(){
        guessbtn.style.display = "none";
        playagainbtn.style.display = "block";
        popup.style.display = "none";
+       
 
        if(guesscount < 3){
         feedback.textContent = "your guess is too high 😮";
@@ -100,16 +102,27 @@ guessbtn.addEventListener("click",function(){
       
        
     }
-    else if(num.value.length > 0){
+    else if(num.value.length > 0 && num.value.length <= 3){
         guesscount++;
         popup.style.color = randomcolor();
         popup.style.display = "block";
         popup.textContent = "Try another number !";
+        num.value = "";
+        num.setAttribute("placeholder",`${placeholder}`);
+    }
+    else if (num.value.length >= 4){
+        popup.style.color = randomcolor();
+        popup.style.display = "block";
+        popup.textContent = "enter a valid number !";
+        num.value = "";
+        num.setAttribute("placeholder",`0`);
     }
     else{
         popup.style.color = randomcolor();
         popup.style.display = "block";
         popup.textContent = "enter a number !";
+        num.value = "";
+        num.setAttribute("placeholder",`0`);
     }
 })
 
@@ -123,6 +136,8 @@ playagainbtn.addEventListener("click",function(){
     playagainbtn.style.display = "none";
     feedback.style.display = "none";
     randomvalue = randomnumber();
+    num.value = "";
+    num.setAttribute("placeholder","0");
 })
 
 
@@ -138,7 +153,7 @@ var randomcolor = ()=>{
 
 
 num.addEventListener("click",function(){
-    num.style.background = "black";
-    num.style.color = "greenyellow";
+    num.removeAttribute("placeholder")
+
 })
 
